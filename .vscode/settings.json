@@ -1,0 +1,10 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv_arm/bin/python",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/OneStage/yolo/deep_sort_yolov3",
+    "${workspaceFolder}/OneStage/yolo/deep_sort_yolov4"
+  ],
+  "python.terminal.activateEnvironment": true,
+  "python.testing.pytestEnabled": false,
+  "python.testing.unittestEnabled": false
+}
