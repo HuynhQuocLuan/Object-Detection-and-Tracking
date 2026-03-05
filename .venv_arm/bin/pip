@@ -1,4 +1,4 @@
-#!/Users/allenhuang/Desktop/CodexProject/GithubProject/Object-Detection-and-Tracking/.venv_arm/bin/python3
+#!/Users/allenhuang/Desktop/CodexProject/GithubProject/Object-Detection-and-Tracking/.venv_arm/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

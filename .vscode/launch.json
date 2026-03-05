@@ -2,113 +2,47 @@
   "version": "0.2.0",
   "inputs": [
     {
-      "id": "className",
-      "type": "pickString",
-      "description": "Object class to track",
-      "options": [
-        "person",
-        "car",
-        "bicycle",
-        "motorcycle"
-      ],
-      "default": "person"
-    },
-    {
-      "id": "videoPath",
-      "type": "promptString",
-      "description": "Input video path relative to the selected subproject folder or as an absolute path",
-      "default": "./test_video/testvideo.avi"
-    },
-    {
-      "id": "smokeVideoPath",
-      "type": "promptString",
-      "description": "Optional smoke-test video path (leave the default if you have a matching file, or edit to any local video)",
-      "default": "./test_video/testvideo.avi"
-    },
-    {
       "id": "demoVideoPath",
       "type": "promptString",
-      "description": "Video path for the modern CPU demo (relative to deep_sort_yolov4 or absolute)",
+      "description": "Video path for YOLO11 + ByteTrack (relative to deep_sort_yolov4 or absolute)",
       "default": "./test_video/testvideo.avi"
+    },
+    {
+      "id": "yolo11Classes",
+      "type": "promptString",
+      "description": "YOLO11 classes to detect and track (comma-separated, e.g. person,car,bus)",
+      "default": "person"
     }
   ],
   "configurations": [
     {
-      "name": "Python: YOLOv4 Smoke Test",
+      "name": "Python: YOLO11 + ByteTrack (Webcam)",
       "type": "python",
       "request": "launch",
-      "program": "${workspaceFolder}/OneStage/yolo/deep_sort_yolov4/smoke_test.py",
-      "cwd": "${workspaceFolder}/OneStage/yolo/deep_sort_yolov4",
-      "console": "integratedTerminal",
-      "justMyCode": true
-    },
-    {
-      "name": "Python: YOLOv4 Smoke Test (With Video)",
-      "type": "python",
-      "request": "launch",
-      "program": "${workspaceFolder}/OneStage/yolo/deep_sort_yolov4/smoke_test.py",
+      "program": "${workspaceFolder}/OneStage/yolo/deep_sort_yolov4/yolo11_bytetrack_demo.py",
       "cwd": "${workspaceFolder}/OneStage/yolo/deep_sort_yolov4",
       "console": "integratedTerminal",
       "justMyCode": true,
       "args": [
-        "-i",
-        "${input:smokeVideoPath}"
-      ]
-    },
-    {
-      "name": "Python: YOLOv4 Modern DNN Demo (Webcam)",
-      "type": "python",
-      "request": "launch",
-      "program": "${workspaceFolder}/OneStage/yolo/deep_sort_yolov4/modern_demo.py",
-      "cwd": "${workspaceFolder}/OneStage/yolo/deep_sort_yolov4",
-      "console": "integratedTerminal",
-      "justMyCode": true,
-      "args": [
+        "-c",
+        "${input:yolo11Classes}",
         "--save-output"
       ]
     },
     {
-      "name": "Python: YOLOv4 Modern DNN Demo (Video)",
+      "name": "Python: YOLO11 + ByteTrack (Video)",
       "type": "python",
       "request": "launch",
-      "program": "${workspaceFolder}/OneStage/yolo/deep_sort_yolov4/modern_demo.py",
+      "program": "${workspaceFolder}/OneStage/yolo/deep_sort_yolov4/yolo11_bytetrack_demo.py",
       "cwd": "${workspaceFolder}/OneStage/yolo/deep_sort_yolov4",
       "console": "integratedTerminal",
       "justMyCode": true,
       "args": [
         "-i",
         "${input:demoVideoPath}",
+        "-c",
+        "${input:yolo11Classes}",
         "--save-output"
-      ]
-    },
-    {
-      "name": "Python: YOLOv4 Deep SORT (Legacy TensorFlow)",
-      "type": "python",
-      "request": "launch",
-      "program": "${workspaceFolder}/OneStage/yolo/deep_sort_yolov4/main.py",
-      "cwd": "${workspaceFolder}/OneStage/yolo/deep_sort_yolov4",
-      "console": "integratedTerminal",
-      "justMyCode": false,
-      "args": [
-        "-c",
-        "${input:className}",
-        "-i",
-        "${input:videoPath}"
-      ]
-    },
-    {
-      "name": "Python: YOLOv3 Deep SORT (Legacy TensorFlow)",
-      "type": "python",
-      "request": "launch",
-      "program": "${workspaceFolder}/OneStage/yolo/deep_sort_yolov3/main.py",
-      "cwd": "${workspaceFolder}/OneStage/yolo/deep_sort_yolov3",
-      "console": "integratedTerminal",
-      "justMyCode": false,
-      "args": [
-        "-c",
-        "${input:className}",
-        "-i",
-        "${input:videoPath}"
       ]
     }
   ]

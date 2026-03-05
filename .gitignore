@@ -1,3 +1,5 @@
 .venv/
+.venv_arm/
+.venv_old/
 __pycache__/
 *.pyc
